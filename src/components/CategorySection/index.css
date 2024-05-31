@@ -1,0 +1,43 @@
+/* Styling for Small Devices */
+
+.menulist-cont {
+  all: unset;
+  display: flex;
+  gap: 30px;
+  font-family: Roboto;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  /* Hide scrollbar for IE and Edge */
+  -ms-overflow-style: none;
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.menulist-cont::-webkit-scrollbar {
+  display: none;
+}
+
+.activemenu-item {
+  margin: 0px;
+  display: inline-block;
+  all: unset;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+  align-self: center;
+  color: rgb(219, 73, 73);
+  border-bottom: 2px solid rgb(219, 73, 73);
+}
+
+.menu-item {
+  margin: 0px;
+  display: inline-block;
+  all: unset;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+  align-self: center;
+}
