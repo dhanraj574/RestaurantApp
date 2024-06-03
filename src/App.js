@@ -1,6 +1,11 @@
 import {Component} from 'react'
+import {Route, Switch, Redirect} from 'react-router-dom'
+
 import './App.css'
 import Home from './components/Home'
+import Login from './components/Login'
+import Cart from './components/Cart'
+import ProtectedRoute from './components/ProtectedRoute'
 import CartContext from './CartContext/CartContext'
 
 class App extends Component {
@@ -42,7 +47,11 @@ class App extends Component {
           removeCartItem: this.removeCartItem,
         }}
       >
-        <Home />
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <ProtectedRoute exact path='/' component={Home} />
+          <ProtectedRoute exact path='/cart' component={Cart} />
+        </Switch>
       </CartContext.Provider>
     )
   }

@@ -36,6 +36,38 @@
   border-radius: 50%;
 }
 
+.link {
+  all: unset;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+}
+
+.logout-btn {
+  cursor: pointer;
+  align-self: center;
+  text-align: center;
+  height: 35px;
+  width: 80px;
+  border-radius: 5px;
+  border-width: 0px;
+  color: #ffffff;
+  background-color: #ff4d4f;
+  font-size: 16px;
+}
+
+.logout-btn:hover {
+  background-color: #e84142;
+}
+
+.navbar-order-cont {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
 /* Styling for Large devices*/
 
 @media screen and (min-width: 768px) {
@@ -44,7 +76,7 @@
   }
   .navbar-order-cont {
     display: flex;
-    gap: 10px;
+    gap: 20px;
   }
   .navbar-order-name {
     margin: 0px;
