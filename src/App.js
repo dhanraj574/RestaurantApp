@@ -1,6 +1,5 @@
-import {Component} from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
-
+import React, {Component} from 'react'
+import {Route, Switch} from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
 import Login from './components/Login'
@@ -13,6 +12,38 @@ class App extends Component {
     cartList: [],
   }
 
+  incrementCartItemQuantity = id => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(each => {
+        if (each.dishId === id) {
+          return {...each, quantity: each.quantity + 1}
+        }
+        return each
+      }),
+    }))
+  }
+
+  decrementCartItemQuantity = id => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(each => {
+        if (each.dishId === id && each.quantity > 1) {
+          return {...each, quantity: each.quantity - 1}
+        }
+        return each
+      }),
+    }))
+  }
+
+  removeCartItem = id => {
+    const {cartList} = this.state
+    const filteredList = cartList.filter(each => each.dishId !== id)
+    this.setState({cartList: filteredList})
+  }
+
+  removeAllCartItems = () => {
+    this.setState({cartList: []})
+  }
+
   addCartItem = product => {
     const {cartList} = this.state
     const existingItem = cartList.find(each => each.dishId === product.dishId)
@@ -20,7 +51,7 @@ class App extends Component {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(each =>
           each.dishId === product.dishId
-            ? {...each, quantity: product.quantity}
+            ? {...each, quantity: each.quantity + product.quantity}
             : each,
         ),
       }))
@@ -31,12 +62,6 @@ class App extends Component {
     }
   }
 
-  removeCartItem = dishId => {
-    this.setState(prevState => ({
-      cartList: prevState.cartList.filter(each => each.dishId !== dishId),
-    }))
-  }
-
   render() {
     const {cartList} = this.state
     return (
@@ -45,12 +70,15 @@ class App extends Component {
           cartList,
           addCartItem: this.addCartItem,
           removeCartItem: this.removeCartItem,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
+          removeAllCartItems: this.removeAllCartItems,
         }}
       >
         <Switch>
-          <Route exact path='/login' component={Login} />
-          <ProtectedRoute exact path='/' component={Home} />
-          <ProtectedRoute exact path='/cart' component={Cart} />
+          <Route exact path="/login" component={Login} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/cart" component={Cart} />
         </Switch>
       </CartContext.Provider>
     )

@@ -1,8 +1,7 @@
 import './index.css'
-import {React, useState} from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react'
+import {Link, withRouter} from 'react-router-dom'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
-import {withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import CartContext from '../../CartContext/CartContext'
 
@@ -32,9 +31,9 @@ const Navbar = props => {
                 Logout
               </button>
               <p className="navbar-order-name">My Orders</p>
-              <div>
+              <div className="cart-icon-container">
                 <Link className="link" to="/cart">
-                  <button>
+                  <button className="cart-button" type="button">
                     <AiOutlineShoppingCart className="navbar-cart-icon" />
                   </button>
                 </Link>
